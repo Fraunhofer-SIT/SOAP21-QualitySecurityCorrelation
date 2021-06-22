@@ -1,0 +1,34 @@
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{subcaption}
+
+\pgfplotsset{compat=1.16}
+
+\begin{document}
+
+\pgfplotstableread{
+x         y
+%CAT1
+}{\catA}
+
+\begin{figure*}
+            	\begin{tikzpicture}
+			\begin{axis} [
+			    xlabel={CATNAME1},
+			    ylabel={CATNAME2}
+			]
+			\addplot [only marks] 
+				  table {\catA};
+			\addplot+[mark=yes, domain=$xmin:$xmax]
+				(\x,{$b$+$a$*\x});
+			\end{axis} 
+		\end{tikzpicture}
+\end{figure*}
+
+QUALITY: $QUALITY$
+
+\end{document}
